@@ -1,0 +1,45 @@
+<!-- Login Component -->
+<div class="container" *ngIf="!userService.isLoggedIn()">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key">
+                <!-- Key icon -->
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-12 login-title">
+               Login
+            </div>
+
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form (ngSubmit)="doLogin()">
+                        <!-- Input field for username -->
+                        <div class="form-group">
+                            <label class="form-control-label">UserName</label>
+                            <input type="text" class="form-control" name="username" required [(ngModel)]="credentials.username">
+                        </div>
+                        <!-- Input field for password -->
+                        <div class="form-group">
+                            <label class="form-control-label">PASSWORD</label>
+                            <input type="password" class="form-control" name="password" required [(ngModel)]="credentials.password">
+                        </div>
+                        <div class="col-lg-12 loginbttm">
+                            <div class="col-lg-6 login-btm login-text">
+                                <!-- Error message (if any) -->
+                            </div>
+                            <!-- Display login message -->
+                            <h3 style="color:aliceblue;">{{message}}</h3>
+                            <br>
+                            <div class="col-lg-6 login-btm login-button">
+                                <!-- Login button -->
+                                <button type="submit" class="gradient-button">LOGIN</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<style>
+  /* Styling for the container */
+  .container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling for the "View" button */
+  .btn-view {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    color: #fff;
+    border-color: #e74c3c;
+  }
+
+  /* Styling for the "Add Review" button */
+  .btn-add-review {
+    background: linear-gradient(to right, #27ae60, #16a085);
+    color: #fff;
+    border-color: #27ae60;
+  }
+
+  /* Styling for the table */
+  .table {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 18px;
+    color: #333;
+  }
+
+  /* Styling for the table header */
+  .table thead tr {
+    background-color: #17a2b8;
+    color: #fff;
+  }
+
+  /* Styling for the even rows in the table body */
+  .table tbody tr:nth-child(even) {
+    background-color: rgba(23, 162, 184, 0.3);
+  }
+
+  /* Styling for the table rows on hover */
+  .table tbody tr:hover {
+    background-color: rgba(23, 162, 184, 0.5);
+  }
+
+  /* Styling for the text indicating an error */
+  .text-danger.bold {
+    font-size: 20px;
+    font-weight: bold;
+    color: #dc3545;
+  }
+</style>
+
+<!-- Search the product -->
+<div ngNativeValidate class="container">
+  <div class="row">
+    <!-- Input field for product name -->
+    <div class="col-lg-9 col-sm-12 col-xs-12 mt-5">
+      <input type="text" placeholder="Enter Product Name" class="form-control" name="productName" [(ngModel)]="productName" required>
+    </div>
+    <!-- Search button -->
+    <div class="col-lg- col-sm-12 col-xs-12">
+      <button type="button" class="btn btn-info mt-2" (click)="searchByproductName()">Search</button>
+    </div>
+  </div>
+
+  <!-- Table to display search results -->
+  <table class="table container mt-4 border" *ngIf="product">
+    <thead>
+      <tr class="bg-info text-dark">
+        <!--<th scope="col"></th>-->
+        <th scope="col">Brand Name</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Code</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="container">
+      <!-- Loop over the search results and display each product -->
+      <tr *ngFor="let item of product">
+        <td>{{item.brandName}}</td>
+        <td>{{item.productName}}</td>
+        <td>{{item.code}}</td>
+        <td>
+          <!-- Button to add a review for the product -->
+          <button *ngIf="product!=null" routerLink="/addreviews/{{item.productId}}" type="button" class="btn btn-outline-success btn-add-review">Add Review</button>&nbsp;
+          <!-- Button to view reviews for the product -->
+          <button *ngIf="product!=null" routerLink="/view-review/{{item.productId}}" type="button" class="btn btn-outline-danger btn-view">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Display an error message if there is one -->
+  <div class="text-danger bold">{{message}}</div>
+</div>

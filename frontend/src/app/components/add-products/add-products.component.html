@@ -1,0 +1,64 @@
+<style>
+  /* CSS styles for button states */
+  .btn-disabled {
+    background: linear-gradient(to right, #27ae60, #16a085) !important;
+  }
+
+  .btn-enabled {
+    background: linear-gradient(to right, #27ae60, #16a085) !important;
+  }
+
+  /* CSS styles for form inputs */
+  .form-control {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-align: center;
+    font-style: italic;
+  }
+</style>
+
+<div class="container-fluid">
+  <div class="col-sm-6">
+    <form class="form-horizontal" name="myform" #myForm="ngForm" (ngSubmit)="addproduct()" novalidate>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="productName">Product Name</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="rolproductNameno" name="productName" required [(ngModel)]="product.productName" #productName="ngModel">
+          <!-- Input field for the product name -->
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="code">Code</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="code" name="code" required [(ngModel)]="product.code" #code="ngModel">
+          <!-- Input field for the product code -->
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="brand">Brand</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="brand" name="brandName" required [(ngModel)]="product.brandName" #brandName="ngModel">
+          <!-- Input field for the brand name -->
+        </div>
+      </div>
+      <div class="buttn1">
+        <div class="col-auto">
+          <div class="alert alert-danger" *ngIf="myForm.submitted && myForm.invalid">
+            Please fill in all the fields.
+          </div>
+          <div class="alert alert-warning" *ngIf="myForm.submitted && !myForm.invalid">
+            {{message}}
+          </div>
+
+          <input type="submit" id="bt" class="btn btn-info"
+            [ngClass]="{
+              'btn-disabled': myForm.invalid || productName.value.trim() === '' || code.value.trim() === '' || brandName.value.trim() === '',
+              'btn-enabled': myForm.valid && productName.value.trim() !== '' && code.value.trim() !== '' && brandName.value.trim() !== ''
+            }"
+            value="Submit" />
+          <!-- Submit button with dynamic CSS classes based on form validation -->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

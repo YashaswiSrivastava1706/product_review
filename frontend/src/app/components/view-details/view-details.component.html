@@ -1,0 +1,58 @@
+<style>
+  /* Styling for the container */
+  .container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling for the table */
+  .table {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    color: #333;
+  }
+
+  /* Styling for the "Add Review" button */
+  .btn-add-review {
+    background: linear-gradient(to right, #27ae60, #16a085);
+    color: #fff;
+    border-color: #27ae60;
+  }
+
+  /* Styling for the "View" button */
+  .btn-view {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    color: #fff;
+    border-color: #e74c3c;
+  }
+</style>
+
+<!-- Table to display the collection -->
+<table class="table container mt-4 border">
+  <thead>
+    <tr class="bg-info text-dark">
+      <!--<th scope="col"></th>-->
+      <th scope="col">Brand Name</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Code</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Loop over the collection and display each item -->
+    <tr *ngFor="let item of collection">
+      <td>{{item.brandName}}</td>
+      <td>{{item.productName}}</td>
+      <td>{{item.code}}</td>
+      <td>
+        <!-- Button to add a review for the item -->
+        <button routerLink="/addreviews/{{item.productId}}" type="button" class="btn btn-outline-success btn-add-review">Add Review</button>
+        &nbsp;&nbsp;
+        <!-- Button to view reviews for the item -->
+        <button routerLink="/view-review/{{item.productId}}" type="button" class="btn btn-outline-danger btn-view">View</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

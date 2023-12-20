@@ -1,0 +1,50 @@
+<style>
+  /* CSS styles for approving button */
+  .btn-approve {
+    background: linear-gradient(to right, #8fc0e1, #5ab3ed) !important;
+  }
+
+  /* CSS styles for disapproving button */
+  .btn-disapprove {
+    background: linear-gradient(to right, #e88a7f, #ff5c4a) !important;
+  }
+</style>
+
+<!-- Heading for the approval section -->
+<h2 class="text-center">Approve Review</h2>
+
+<!-- Table to display the reviews -->
+<table class="table container mt-4 border">
+  <thead>
+    <tr class="bg-info text-dark">
+      <!--<th scope="col"></th>-->
+      <th scope="col">Brand Name</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Review</th>
+      <th scope="col">State</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Loop through the collection of reviews -->
+    <tr *ngFor="let item of collection">
+      <!-- Display brand name -->
+      <th>{{item.product.brandName}}</th>
+      <!-- Display rating -->
+      <th>{{item.rating}}</th>
+      <!-- Display review content -->
+      <th>{{item.review}}</th>
+      <!-- Display review state -->
+      <th>{{item.state}}</th>
+      <th>
+        <!-- Approve button (visible if the review is not already approved) -->
+        <button *ngIf="item.state!='approved'" (click)="approve(item.reviewId)" type="submit" class="btn btn-outline-success btn-approve">Approve</button>&nbsp;
+      </th>
+      <th>
+        <!-- Disapprove button (visible if the review is not already disapproved) -->
+        <button *ngIf="item.state!='disapproved'" (click)="disApprove(item.reviewId)" type="submit" class="btn btn-outline-success btn-disapprove">Disapprove</button>
+      </th>
+    </tr>
+  </tbody>
+</table>

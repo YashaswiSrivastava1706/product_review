@@ -1,0 +1,50 @@
+<mat-toolbar class="navbar" style="color: aliceblue;">
+  <div class="f" style="color: black;">Welcome</div>
+  <p *ngIf="userService.isLoggedIn()" class="text-center">You Are logged in. Please enjoy experience</p>
+</mat-toolbar> 
+
+<!-- Navigation Links -->
+<div class="text-center">
+   <br><br><br>
+   
+  <!-- Login Link -->
+  <a *ngIf="!userService.isLoggedIn()" routerLink="login" class="gradient-button-login"><span>Login</span></a>&nbsp;&nbsp;
+  
+  <!-- Ask for Review Link (Visible to logged in users and admins) -->
+  <a *ngIf="userService.isLoggedIn() || userService.isAdmin()" routerLink="add-products" class="gradients-button"><span>Ask for review</span></a>&nbsp;&nbsp;
+  
+  <!-- View Products Link (Visible to logged in users) -->
+  <a *ngIf="userService.isLoggedIn()" routerLink="view-products" class="gradients-button"><span>Products</span></a>&nbsp;
+  
+  <!-- Register Link (Visible to non-logged in users) -->
+  <a *ngIf="!userService.isLoggedIn()" routerLink="register" class="gradient-button-login"><span>Register</span></a>&nbsp;&nbsp;
+  
+  <!-- Approve Link (Visible to admin users) -->
+  <a *ngIf="userService.isAdmin()" routerLink="approve" class="gradients-button"><span>Approve</span></a>&nbsp;&nbsp;
+  
+  <!-- Search Link (Visible to logged in users) -->
+  <a *ngIf="userService.isLoggedIn()" routerLink="search" class="gradients-button"><span>Search</span></a>&nbsp;&nbsp;
+  
+  <!-- Logout Link (Visible to logged in users) -->
+  <a *ngIf="userService.isLoggedIn()" (click)="logout()" routerLink="login" class="gradient-button-login"><span>Logout</span></a>&nbsp;&nbsp;
+</div>
+
+<router-outlet></router-outlet>
+<br><br>
+
+<!-- Footer -->
+<footer>
+  <div class="icon" style="color: aliceblue;">
+    <!-- User Count -->
+    <i class="fa fa-users" aria-hidden="true"></i> {{noOfUser}}&nbsp; &nbsp; &nbsp;
+    
+    <!-- Product Count -->
+    <i class='fas fa-tv'></i> {{noOfProducts}}&nbsp; &nbsp; &nbsp;
+    
+    <!-- Review Count -->
+    <i class="fa fa-commenting" aria-hidden="true"></i> {{noOfReviews}}
+    
+    <!-- Author Credit -->
+    <i class="float-right" style="top: 0%;">created by-yashaswi</i>
+  </div>
+</footer>

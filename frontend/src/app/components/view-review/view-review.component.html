@@ -1,0 +1,63 @@
+<style>
+  /* Styling for the container */
+  .container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling for the product details */
+  .product-details {
+    margin-bottom: 20px;
+  }
+
+  /* Styling for each review item */
+  .review-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /* Styling for the "No data" message */
+  .no-data {
+    font-style: italic;
+    color: #999;
+  }
+</style>
+
+<!-- Displaying product details and reviews -->
+<br><br>
+<div class="row">
+  <!-- Product Details -->
+  <div class="col-sm-6">
+    <div class="container mt-4 product-details">
+      <h2>Product</h2>
+
+      <!-- Displaying product details using interpolation -->
+      <strong>Brand:</strong> {{list.brandName}}<br>
+      <strong>Product Name:</strong> {{list.productName}}<br>
+      <strong>Code:</strong> {{list.code}}<br>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="col-sm-6">
+    <div class="container mt-4">
+      <h2>Reviews</h2>
+      <!-- Checking if there are reviews available -->
+      <div *ngIf="list.review.length > 0">
+        <!-- Looping over each review item and displaying the review and rating -->
+        <div class="review-item" *ngFor="let item of list.review">
+          <p><strong>Review:</strong> {{item.review}}</p>
+          <p><strong>Rating:</strong> {{item.rating}}/5</p>
+        </div>
+      </div>
+      <!-- Displaying a message if there are no reviews available -->
+      <div class="no-data" *ngIf="list.review.length === 0">
+        <p>No reviews available.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br>

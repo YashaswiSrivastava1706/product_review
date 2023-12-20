@@ -1,0 +1,43 @@
+<!-- Register Component -->
+<div class="card-body">
+    <form (ngSubmit)="formSubmit()" #registerForm="ngForm">
+      <!-- Input field for first name -->
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="firstName">First Name</label>
+        <div class="col-sm-6">
+          <input type="text" name="firstName" class="form-control" [(ngModel)]="user.firstName" required>
+        </div>
+      </div>
+      <!-- Input field for last name -->
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="lastName">Last Name</label>
+        <div class="col-sm-6">
+          <input type="text" name="lastName" class="form-control" [(ngModel)]="user.lastName" required>
+        </div>
+      </div>
+      <!-- Input field for username -->
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="username">Username</label>
+        <div class="col-sm-6">
+          <input type="text" name="username" class="form-control" [(ngModel)]="user.username" required>
+        </div>
+      </div>
+      <!-- Input field for password -->
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="password">Password</label>
+        <div class="col-sm-6">
+          <input type="password" name="password" class="form-control" [(ngModel)]="user.password" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-6">
+          <!-- Error message for invalid form submission -->
+          <div class="alert alert-danger" *ngIf="registerForm.submitted && registerForm.invalid">
+            Please fill in all the fields.
+          </div>
+          <!-- Register button -->
+          <button type="submit" class="btn btn-info">Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
